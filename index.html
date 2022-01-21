@@ -9,6 +9,21 @@
     <script src="./js/script.js" defer></script>
 </head>
 <body>
-    
+    <div class="wrapper">
+        <button class="btn book-new">New Book</button>
+        <form class="book-form" hidden>
+            <label for="bookTitle">Title:</label>
+            <input type="text" name="bookTitle" id="bookTitle" required><br>
+            <label for="bookAuthor">Author:</label>
+            <input type="text" name="bookAuthor" id="bookAuthor" required><br>
+            <label for="bookPages">Number of Pages:</label>
+            <input type="number" name="bookPages" id="bookPages" required><br>
+            <label for="bookRead">Have you read this book?</label>
+            <input type="checkbox" name="bookRead" id="bookRead" value='read'>
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+        <div class="book-submission-message" hidden>Thank you for submitting!</div>
+    </div>
 </body>
 </html>
