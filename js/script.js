@@ -6,6 +6,7 @@
 const newBookBtn = document.querySelector('.book-new');
 const newBookForm = document.querySelector('.book-form');
 const newBookSubmissionMessage = document.querySelector('.book-submission-message');
+const bookCards = document.querySelector('.book-cards');
 
 let myLibrary = [];
 
@@ -13,26 +14,33 @@ function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read ? 'already been read':'not been read yet';
+    this.read = read
 }
 
 Book.prototype.bookInfo = function() {
-    return `${this.title} by ${this.author} has ${this.pages} pages and has ${this.read}.`;
+    const readMessage = this.read ? 'Yes':'Not Yet';
+    return `Title: ${this.title}
+            Author: ${this.author}
+            Pages: ${this.pages}
+            Read: ${readMessage}`;
 };
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-function displayBooks() {
-    myLibrary.forEach((book) => {
-        console.log(book.bookInfo());
-    });
+function displayBook(book) {
+    const bookCardInfo = document.createElement('div');
+    bookCardInfo.classList.add('book-card-info');
+    bookCardInfo.textContent = book.bookInfo();
+    bookCards.appendChild(bookCardInfo);
 }
+
+// example book
 
 const hobbitBook = new Book('The Hobbit', 'J.R.R. Tolkien', 295, true);
 addBookToLibrary(hobbitBook);
-displayBooks();
+displayBook(hobbitBook);
 
 // add book button
 
@@ -56,6 +64,7 @@ function submitForm(event) {
     const newBookSubmission = new Book(bookTitle, bookAuthor, bookPages, bookRead);
 
     addBookToLibrary(newBookSubmission);
+    displayBook(newBookSubmission);
     newBookForm.reset();
     newBookForm.hidden = true;
     newBookSubmissionMessage.hidden = false;
