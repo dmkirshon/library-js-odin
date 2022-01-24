@@ -41,5 +41,9 @@ body {
     justify-content: center;
     align-items: center;
     white-space: pre-line;
-    
+    flex-direction: column;
+}
+
+.book-remove {
+    margin-top: 1em;
 }
