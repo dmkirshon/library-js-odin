@@ -1,0 +1,38 @@
+/* General Style */
+html {
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, 
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Book Card Style */
+
+.book-cards {
+    margin-bottom: 2em;
+    width: 50%
+}
+
+.book-card-info {
+    width: 66%;
+    height: 200px;
+    margin-right: 10px;
+    background: #8C8;
+    counter-increment: book-card-info;
+}

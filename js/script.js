@@ -7,6 +7,7 @@ const newBookBtn = document.querySelector('.book-new');
 const newBookForm = document.querySelector('.book-form');
 const newBookSubmissionMessage = document.querySelector('.book-submission-message');
 const bookCards = document.querySelector('.book-cards');
+const flkty = new Flickity('.book-cards', {wrapAround: true});
 
 let myLibrary = [];
 
@@ -34,6 +35,7 @@ function displayBook(book) {
     bookCardInfo.classList.add('book-card-info');
     bookCardInfo.textContent = book.bookInfo();
     bookCards.appendChild(bookCardInfo);
+    flkty.append(bookCardInfo);
 }
 
 // example book
