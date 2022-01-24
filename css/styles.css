@@ -30,9 +30,16 @@ body {
 }
 
 .book-card-info {
+    font-size: 24px;
     width: 66%;
     height: 200px;
     margin-right: 10px;
     background: #8C8;
     counter-increment: book-card-info;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: pre-line;
+    
 }
