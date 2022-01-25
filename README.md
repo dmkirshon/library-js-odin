@@ -18,5 +18,15 @@
 
 ## Skills:
 1. Javascript
+    - Use of arrays to keep track of objects
+    - Creation of objects to organize data with constructors and prototypes
+    - Import of 3rd party utility/package for advanced UI functionality
 2. CSS
+    - Import of 3rd party utility/package for advanced UI styling
 3. HTML
+    - Use of forms and inputs to allow for data input by user
+
+
+---
+
+Card Carousel using https://flickity.metafizzy.co/
