@@ -29,11 +29,20 @@ Book.prototype.bookInfo = function () {
 
 Book.prototype.addBookToLibrary = function () {
     myLibrary.push(this);
+
+    const bookCard = document.createElement('div');
     const bookCardInfo = document.createElement('div');
+
+    bookCard.classList.add('book-card');
     bookCardInfo.classList.add('book-card-info');
+
+    bookCard.appendChild(bookCardInfo);
     bookCardInfo.textContent = this.bookInfo();
-    addRemoveBookButton(bookCardInfo);
-    flkty.append(bookCardInfo);
+
+    addRemoveBookButton(bookCard);
+    addReadBookButton(bookCard);
+
+    flkty.append(bookCard);
 
 };
 
@@ -85,12 +94,46 @@ function addRemoveBookButton(card) {
     const removeButton = document.createElement('button');
     removeButton.classList.add('book-remove');
     removeButton.textContent = 'Remove Book';
-    removeButton.setAttribute('data-book-index', bookIndex++);
+    card.setAttribute('data-book-index', bookIndex++);
     card.appendChild(removeButton);
     removeButton.addEventListener('click', removeBook);
 }
 
 function removeBook() {
     flkty.remove(this.parentElement);
-    delete myLibrary[this.getAttribute('data-book-index')];
+    delete myLibrary[this.parentElement.getAttribute('data-book-index')];
+
+
+}
+
+// Read button
+
+function addReadBookButton(card) {
+    const readButton = document.createElement('button');
+    readButton.classList.add('book-read');
+   
+    if (myLibrary[card.getAttribute('data-book-index')].read) {
+        readButton.textContent = "Didn't Read";
+    } else {
+        readButton.textContent = "Read Book";
+    }
+
+    card.appendChild(readButton);
+    readButton.addEventListener('click', readBook);
+}
+
+function readBook() {
+    const bookIndex = this.parentElement.getAttribute('data-book-index')
+    const bookInfo = this.parentElement.querySelector('.book-card-info');
+    const bookReadChange = !(myLibrary[bookIndex].read);
+    myLibrary[bookIndex].read = bookReadChange;
+    
+    if (bookReadChange) {
+        this.textContent = "Didn't Read";
+    } else {
+        this.textContent = "Read Book";
+    }
+
+    bookInfo.textContent = myLibrary[bookIndex].bookInfo();
+
 }
