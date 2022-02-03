@@ -12,39 +12,41 @@ const flkty = new Flickity('.book-cards', { wrapAround: true});
 let myLibrary = [];
 let bookIndex = 0;
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Book {
+    constructor (title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    bookInfo() {
+        const readMessage = this.read ? 'Yes' : 'Not Yet';
+        return `Title: ${this.title}
+                Author: ${this.author}
+                Pages: ${this.pages}
+                Read: ${readMessage}`;
+    }
+
+    addBookToLibrary() {
+        myLibrary.push(this);
+    
+        const bookCard = document.createElement('div');
+        const bookCardInfo = document.createElement('div');
+    
+        bookCard.classList.add('book-card');
+        bookCardInfo.classList.add('book-card-info');
+    
+        bookCard.appendChild(bookCardInfo);
+        bookCardInfo.textContent = this.bookInfo();
+    
+        addRemoveBookButton(bookCard);
+        addReadBookButton(bookCard);
+    
+        flkty.append(bookCard);
+    
+    }
 }
-
-Book.prototype.bookInfo = function () {
-    const readMessage = this.read ? 'Yes' : 'Not Yet';
-    return `Title: ${this.title}
-            Author: ${this.author}
-            Pages: ${this.pages}
-            Read: ${readMessage}`;
-};
-
-Book.prototype.addBookToLibrary = function () {
-    myLibrary.push(this);
-
-    const bookCard = document.createElement('div');
-    const bookCardInfo = document.createElement('div');
-
-    bookCard.classList.add('book-card');
-    bookCardInfo.classList.add('book-card-info');
-
-    bookCard.appendChild(bookCardInfo);
-    bookCardInfo.textContent = this.bookInfo();
-
-    addRemoveBookButton(bookCard);
-    addReadBookButton(bookCard);
-
-    flkty.append(bookCard);
-
-};
 
 // example book
 
